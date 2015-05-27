@@ -1,9 +1,13 @@
 package appewtc.masterung.myssrurestaurant;
 
+import android.os.Build;
+import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.InputStream;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -19,9 +23,25 @@ public class MainActivity extends ActionBarActivity {
         objUserTABLE = new UserTABLE(this);
 
         //Test Add Value
-        testAddValue();
+       // testAddValue();
+
+        //Synchronize JSON to SQLite
+        synJSONtoSQLite();
 
     }   // onCreate
+
+    private void synJSONtoSQLite() {
+
+        //Setup New Policy
+        if (Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy myPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(myPolicy);
+        }   //if
+
+        InputStream objInputStream = null;
+        String strJSON = "";
+
+    }   // synJSON
 
     private void testAddValue() {
         objUserTABLE.addNewData("testUser", "testPassword", "testOfficer");
