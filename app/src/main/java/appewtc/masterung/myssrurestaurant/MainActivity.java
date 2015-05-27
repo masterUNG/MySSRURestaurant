@@ -18,7 +18,16 @@ public class MainActivity extends ActionBarActivity {
 
         objUserTABLE = new UserTABLE(this);
 
+        //Test Add Value
+        testAddValue();
+
     }   // onCreate
+
+    private void testAddValue() {
+        objUserTABLE.addNewData("testUser", "testPassword", "testOfficer");
+        FoodTABLE objFoodTABLE = new FoodTABLE(this);
+        objFoodTABLE.addFood("testFood", "12345");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
