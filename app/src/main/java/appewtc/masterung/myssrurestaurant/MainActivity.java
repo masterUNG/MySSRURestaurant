@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity {
     //Explicit
     private UserTABLE objUserTABLE;
     private EditText userEditText, passwordEditText;
-    private String userString, passwordString;
+    private String userString, passwordString, truePassword, officerString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +71,27 @@ public class MainActivity extends ActionBarActivity {
 
         } else {
 
+            //Check User
+            checkUser();
+
         }   // if
 
+
+    }
+
+    private void checkUser() {
+
+        try {
+
+            String strMyResult[] = objUserTABLE.searchUser(userString);
+            truePassword = strMyResult[2];
+            officerString = strMyResult[3];
+            Log.d("ssru", "Welcom ==> " + officerString);
+
+        } catch (Exception e) {
+            MyAlertDialog objMyAlertDialog = new MyAlertDialog();
+            objMyAlertDialog.showDialog(MainActivity.this, "No This User", "NO This User in my Database");
+        }
 
     }
 
