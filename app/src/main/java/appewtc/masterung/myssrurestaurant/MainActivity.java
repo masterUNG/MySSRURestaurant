@@ -1,5 +1,6 @@
 package appewtc.masterung.myssrurestaurant;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.StrictMode;
@@ -88,9 +89,29 @@ public class MainActivity extends ActionBarActivity {
             officerString = strMyResult[3];
             Log.d("ssru", "Welcom ==> " + officerString);
 
+            //Check Password
+            checkPassword();
+
         } catch (Exception e) {
             MyAlertDialog objMyAlertDialog = new MyAlertDialog();
             objMyAlertDialog.showDialog(MainActivity.this, "No This User", "NO This User in my Database");
+        }
+
+    }
+
+    private void checkPassword() {
+
+        if (passwordString.equals(truePassword)) {
+
+            Intent objIntent = new Intent(MainActivity.this, ShowMenuActivity.class);
+            objIntent.putExtra("Officer", officerString);
+            startActivity(objIntent);
+            deleteAllData();
+            finish();
+
+        } else {
+            MyAlertDialog objMyAlertDialog = new MyAlertDialog();
+            objMyAlertDialog.showDialog(MainActivity.this, "Password False", "Please Try Again Password False");
         }
 
     }
