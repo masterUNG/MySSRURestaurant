@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -26,6 +28,8 @@ public class MainActivity extends ActionBarActivity {
 
     //Explicit
     private UserTABLE objUserTABLE;
+    private EditText userEditText, passwordEditText;
+    private String userString, passwordString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,9 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         objUserTABLE = new UserTABLE(this);
+
+        //Bind Widget
+        bindWidget();
 
         //Test Add Value
        // testAddValue();
@@ -43,7 +50,36 @@ public class MainActivity extends ActionBarActivity {
         //Synchronize JSON to SQLite
         synJSONtoSQLite();
 
+
+
     }   // onCreate
+
+    public void clickLogin(View view) {
+        //Check Zero
+        checkZero();
+    }
+
+    private void checkZero() {
+
+        userString = userEditText.getText().toString().trim();
+        passwordString = passwordEditText.getText().toString().trim();
+
+        if (userString.equals("") || passwordString.equals("") ) {
+
+            MyAlertDialog objMyAlertDialog = new MyAlertDialog();
+            objMyAlertDialog.showDialog(MainActivity.this, "Have Space", "Please Fill All Every Blank");
+
+        } else {
+
+        }   // if
+
+
+    }
+
+    private void bindWidget() {
+        userEditText = (EditText) findViewById(R.id.editText);
+        passwordEditText = (EditText) findViewById(R.id.editText2);
+    }
 
     private void deleteAllData() {
 
