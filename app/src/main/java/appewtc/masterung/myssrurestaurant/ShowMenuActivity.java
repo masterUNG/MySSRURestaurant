@@ -1,17 +1,48 @@
 package appewtc.masterung.myssrurestaurant;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class ShowMenuActivity extends ActionBarActivity {
+
+    private TextView showOfficerTextView;
+    private String officerString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_menu);
+
+        //Show Officer
+        showOfficer();
+
+        //About Desk Spinner
+        aboutDeskSpinner();
+
+
+        //About Item Spinner
+
+
+    }   //onCreate
+
+    private void aboutDeskSpinner() {
+
+        Spinner deskSpinner = (Spinner) findViewById(R.id.spinner);
+        String showDesk[] = getResources().getStringArray(R.array.desk);
+        ArrayAdapter<String> deskAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, showDesk);
+        deskSpinner.setAdapter(deskAdapter);
+    }
+
+    private void showOfficer() {
+        showOfficerTextView = (TextView) findViewById(R.id.textView);
+        officerString = getIntent().getExtras().getString("Officer");
+        showOfficerTextView.setText(officerString);
     }
 
     @Override
@@ -35,4 +66,4 @@ public class ShowMenuActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-}
+}   // Main Class
