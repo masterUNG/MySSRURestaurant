@@ -34,7 +34,7 @@ public class MainActivity extends ActionBarActivity {
         objUserTABLE = new UserTABLE(this);
 
         //Test Add Value
-       // testAddValue();
+        testAddValue();
 
         //Synchronize JSON to SQLite
         synJSONtoSQLite();
@@ -78,7 +78,7 @@ public class MainActivity extends ActionBarActivity {
 
             objInputStream.close();
             strJSON = objStringBuilder.toString();
-
+            //Log.d("ssru", "My JSON ==> " + strJSON);
 
         } catch (Exception e) {
             Log.d("ssru", "Create strJSON ==> " + e.toString());
@@ -88,7 +88,7 @@ public class MainActivity extends ActionBarActivity {
         try {
 
             final JSONArray objJsonArray = new JSONArray(strJSON);
-            for (int i = 0; i > objJsonArray.length(); i++) {
+            for (int i = 0; i < objJsonArray.length(); i++) {
 
                 JSONObject myJsonObject = objJsonArray.getJSONObject(i);
                 String strUser = myJsonObject.getString("User");
