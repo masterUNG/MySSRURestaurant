@@ -1,5 +1,6 @@
 package appewtc.masterung.myssrurestaurant;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
@@ -34,12 +35,22 @@ public class MainActivity extends ActionBarActivity {
         objUserTABLE = new UserTABLE(this);
 
         //Test Add Value
-        testAddValue();
+       // testAddValue();
+
+        //Delete All Data
+        deleteAllData();
 
         //Synchronize JSON to SQLite
         synJSONtoSQLite();
 
     }   // onCreate
+
+    private void deleteAllData() {
+
+        SQLiteDatabase deleteDatabase = openOrCreateDatabase("ssru.db", MODE_PRIVATE, null);
+        deleteDatabase.delete("userTABLE", null, null);
+
+    }
 
     private void synJSONtoSQLite() {
 
